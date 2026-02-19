@@ -4,13 +4,16 @@
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #09090b;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #27272a;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #3f3f46;
 }

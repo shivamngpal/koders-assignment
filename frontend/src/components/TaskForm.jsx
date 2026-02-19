@@ -40,13 +40,13 @@ export default function TaskForm({ onSubmit, editingTask, onCancelEdit }) {
     const isEditing = !!editingTask;
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
             <div>
                 <label
                     htmlFor="task-title"
-                    className="block text-sm font-medium text-slate-300 mb-1.5"
+                    className="block text-sm font-medium text-zinc-300 mb-2"
                 >
-                    Task Title <span className="text-rose-400">*</span>
+                    Title
                 </label>
                 <input
                     id="task-title"
@@ -54,19 +54,19 @@ export default function TaskForm({ onSubmit, editingTask, onCancelEdit }) {
                     placeholder="What needs to be done?"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className={`w-full px-4 py-2.5 bg-slate-700/50 border rounded-lg text-slate-100 placeholder-slate-500 
-            focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all
-            ${errors.title ? "border-rose-500" : "border-slate-600"}`}
+                    className={`w-full px-4 py-2.5 bg-zinc-900 border rounded-md text-white placeholder-zinc-500 
+            focus:border-zinc-300 focus:outline-none focus:ring-0 transition-colors
+            ${errors.title ? "border-red-500/50" : "border-zinc-800"}`}
                 />
                 {errors.title && (
-                    <p className="mt-1 text-sm text-rose-400">{errors.title}</p>
+                    <p className="mt-1.5 text-sm text-red-400">{errors.title}</p>
                 )}
             </div>
 
             <div>
                 <label
                     htmlFor="task-description"
-                    className="block text-sm font-medium text-slate-300 mb-1.5"
+                    className="block text-sm font-medium text-zinc-300 mb-2"
                 >
                     Description
                 </label>
@@ -76,30 +76,29 @@ export default function TaskForm({ onSubmit, editingTask, onCancelEdit }) {
                     placeholder="Add a short description..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className={`w-full px-4 py-2.5 bg-slate-700/50 border rounded-lg text-slate-100 placeholder-slate-500 
-            focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all resize-none
-            ${errors.description ? "border-rose-500" : "border-slate-600"}`}
+                    className={`w-full px-4 py-2.5 bg-zinc-900 border rounded-md text-white placeholder-zinc-500 
+            focus:border-zinc-300 focus:outline-none focus:ring-0 transition-colors resize-none
+            ${errors.description ? "border-red-500/50" : "border-zinc-800"}`}
                 />
                 {errors.description && (
-                    <p className="mt-1 text-sm text-rose-400">{errors.description}</p>
+                    <p className="mt-1.5 text-sm text-red-400">{errors.description}</p>
                 )}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-1">
                 <button
                     type="submit"
-                    className="flex-1 px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 
-            text-white font-medium rounded-lg shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 
-            transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                    className="px-6 py-2.5 bg-white text-black font-semibold rounded-md 
+            hover:bg-zinc-200 transition-colors cursor-pointer active:scale-[0.98]"
                 >
-                    {isEditing ? "✏️ Update Task" : "➕ Add Task"}
+                    {isEditing ? "Update Task" : "Add Task"}
                 </button>
                 {isEditing && (
                     <button
                         type="button"
                         onClick={onCancelEdit}
-                        className="px-6 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium 
-              rounded-lg transition-all duration-200 cursor-pointer"
+                        className="px-6 py-2.5 text-zinc-400 hover:text-white font-medium 
+              rounded-md transition-colors cursor-pointer"
                     >
                         Cancel
                     </button>

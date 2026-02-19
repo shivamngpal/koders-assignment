@@ -85,50 +85,48 @@ function App() {
   const completedCount = tasks.filter((t) => t.status === "completed").length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+    <div className="min-h-screen bg-black text-white">
       {/* Toast Notification */}
       {toast && (
         <div
-          className={`fixed top-6 right-6 z-50 px-5 py-3 rounded-xl shadow-2xl text-sm font-medium
-            backdrop-blur-sm border animate-[slideIn_0.3s_ease-out]
+          className={`fixed top-6 right-6 z-50 px-5 py-3 rounded-lg text-sm font-medium
+            border transition-all duration-300
             ${toast.type === "error"
-              ? "bg-rose-500/20 border-rose-500/40 text-rose-300"
-              : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
+              ? "bg-red-500/10 border-red-500/30 text-red-400"
+              : "bg-green-500/10 border-green-500/30 text-green-400"
             }`}
         >
-          {toast.type === "error" ? "❌" : "✅"} {toast.message}
+          {toast.message}
         </div>
       )}
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
+      <div className="max-w-2xl mx-auto px-6 py-16">
         {/* Header */}
-        <header className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+        <header className="mb-12">
+          <h1 className="text-3xl font-bold text-white tracking-tight">
             Task Manager
           </h1>
-          <p className="text-slate-500">
+          <p className="text-zinc-500 mt-1 text-sm">
             Organize your work, one task at a time.
           </p>
 
           {/* Stats */}
           {tasks.length > 0 && (
-            <div className="flex justify-center gap-6 mt-5">
-              <div className="flex items-center gap-2 text-sm">
-                <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
-                <span className="text-slate-400">
-                  Total: <span className="text-slate-200 font-semibold">{tasks.length}</span>
+            <div className="flex gap-6 mt-6">
+              <div className="text-sm text-zinc-500">
+                All{" "}
+                <span className="text-white font-medium">{tasks.length}</span>
+              </div>
+              <div className="text-sm text-zinc-500">
+                Pending{" "}
+                <span className="text-zinc-300 font-medium">
+                  {pendingCount}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <span className="text-slate-400">
-                  Pending: <span className="text-amber-400 font-semibold">{pendingCount}</span>
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                <span className="text-slate-400">
-                  Done: <span className="text-emerald-400 font-semibold">{completedCount}</span>
+              <div className="text-sm text-zinc-500">
+                Completed{" "}
+                <span className="text-green-400 font-medium">
+                  {completedCount}
                 </span>
               </div>
             </div>
@@ -136,9 +134,9 @@ function App() {
         </header>
 
         {/* Task Form Card */}
-        <div className="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 mb-8 shadow-xl">
-          <h2 className="text-lg font-semibold text-slate-200 mb-4">
-            {editingTask ? "✏️ Edit Task" : "➕ New Task"}
+        <div className="border border-zinc-800 rounded-lg p-6 mb-10">
+          <h2 className="text-sm font-medium text-zinc-300 mb-5 uppercase tracking-wider">
+            {editingTask ? "Edit Task" : "New Task"}
           </h2>
           <TaskForm
             onSubmit={editingTask ? handleUpdate : handleCreate}
@@ -149,12 +147,12 @@ function App() {
 
         {/* Task List */}
         <div>
-          <h2 className="text-lg font-semibold text-slate-200 mb-4">
-            📋 Your Tasks
+          <h2 className="text-sm font-medium text-zinc-300 mb-5 uppercase tracking-wider">
+            Tasks
           </h2>
           {loading ? (
             <div className="flex justify-center py-16">
-              <div className="w-8 h-8 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-zinc-700 border-t-white rounded-full animate-spin" />
             </div>
           ) : (
             <TaskList
